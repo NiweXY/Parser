@@ -12,7 +12,7 @@ class SQL{
 	private function __construct()
 	{
 		setlocale(LC_ALL, 'ru_RU.UTF8');
-		$this->db = new PDO('mysql:host = localhost;bdname=parser', 'root','');
+		$this->db = new PDO('mysql:host = localhost; bdname= foxtrot', 'root','');
 		$this->db->exec('SET NAME UTF8');
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	}
@@ -49,7 +49,7 @@ class SQL{
 		$columns_s = implode(',', $columns);
 		$masks_s = implode(',', $masks);	
 		
-		$query = "INSERT INTO $table($columns_s) VALUES($masks_s)";
+		$query = "INSERT INTO `$table`(`$columns_s`) VALUES(`$masks_s`)";
 		
 		$q = $this->db->prepare($query );
 		$q->execute($object);
@@ -109,9 +109,12 @@ class SQL{
 		return $q ->rowCount();
 	}	
 	
-}	
+}
+
+?>
 
 
+<?
 
 
 
